@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Check Gretest Number</p>
+    <input type="number" placeholder="Enter number 1" id="n1"><br><br>
+    <input type="number" placeholder="Enter number 2" id="n2"><br><br>
+    <input type="number" placeholder="Enter number 3" id="n3"><br><br>
+    <button onclick="check2()">Check</button>
+    <h3 id="ans2"> Your answer is: </h3>
+    <script>
+        function check2() {
+                let n1 = document.getElementById("n1").value;
+                let n2 = document.getElementById("n2").value;
+                let n3 = document.getElementById("n3").value;
+                if (n1 > n2 && n1 > n3) {
+                    document.getElementById("ans2").innerHTML = n1 + " is " + "Greatest";
+                    document.getElementById("ans2").setAttribute("style", 'color:blue')
+                }
+                else if (n2 > n1 && n2 > n3) {
+                    document.getElementById("ans2").innerHTML = n2 + " is " + "Greatest";
+                    document.getElementById("ans2").setAttribute("style", 'color:blue')
+                }
+                else {
+                    document.getElementById("ans2").innerHTML = n3 + " is " + "Greatest";
+                    document.getElementById("ans2").setAttribute('style', 'color:red')
+                }
+            }
+    </script>
+</body>
+</html>

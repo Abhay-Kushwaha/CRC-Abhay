@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Games and Tools</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            background-image: url("https://cdn.pixabay.com/photo/2020/03/22/06/57/game-background-4956017_1280.jpg");
+            background-size: 100%;
+            background-position-x: 0%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            margin-top: 20px;
+            color: rgb(19, 21, 23);
+            font-size:2cm;
+            font-weight: 200;
+        }
+
+        .card {
+            width: 370px;
+            height: 450px;
+            text-align: center;
+            background-color: rgb(38, 35, 35);
+            opacity: 0.8;
+            color: white;
+            margin-right: 10px;
+            border: 2px solid white;
+        }
+
+        img{
+            height: 250px;
+            width: 300px;
+            margin-left: 35px;
+            margin-bottom: 35px;
+        }
+
+        .result {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="Index.html">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/dataritz/2026cseaJavaScript/tree/main">Sir GitHub</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://github.com/dataritz/2026cseaJavaScript/blob/main/4%20sem%202026%20Batch.pdf">Syllabus</a>
+            </li>
+        </ul>
+    </nav>
+    <h1>Mini Games and Tools</h1>
+
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mb-4">
+                <div id="diceroll" class="card">
+                    <h3>Dice Roll</h3>
+                    <img src="https://www.shutterstock.com/image-vector/two-dice-gamble-gambling-craps-600nw-1103125457.jpg">
+                    <button class="btn btn-primary" onclick="rollDice()">Roll Dice</button>
+                    <p class="result" id="dice-result"></p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div id="rpc" class="card">
+                    <h3>Rock Paper Scissors</h3>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxOa0PQZ_RtOGqKfzxkVv-Bde5kg2qyxrpf-TeOcjWSw&s">
+                    <div class="btn-group">
+                        <button class="btn btn-secondary" onclick="playGame('ROCK')">Rock</button>
+                        <button class="btn btn-secondary" onclick="playGame('PAPER')">Paper</button>
+                        <button class="btn btn-secondary" onclick="playGame('SCISSOR')">Scissors</button>
+                    </div>
+                    <p class="result" id="rps-result"></p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div id="atm" class="card">
+                    <h3>ATM PIN Generator</h3>
+                    <img src="https://paytmblogcdn.paytm.com/wp-content/uploads/2022/01/row248_How-to-Change-the-ATM-Card-PIN-800x500.png">
+                    <button class="btn btn-primary" onclick="generatePIN()">Generate PIN</button>
+                    <p class="result" id="pin-result"></p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div id="pass" class="card">
+                        <h3>Password Generator</h3>
+                        <img src="https://www.hostpapa.com/blog/app/uploads/2017/08/password.png">
+                        <button class="btn btn-primary" onclick="generatePassword()">Generate Password</button>
+                        <p class="result" id="password-result"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="text-center">
+                    <div id="otp" class="card">
+                        <h3>OTP Generator</h3>
+                        <img src="https://thumbs.dreamstime.com/b/otp-one-time-password-step-authentication-data-protection-internet-security-concept-otp-one-time-password-step-authentication-data-254434939.jpg">
+                        <button class="btn btn-primary" onclick="generateOTP()">Generate OTP</button>
+                        <p class="result" id="otp-result"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        // Function to roll a dice
+        function rollDice() {
+            var result = Math.floor(Math.random() * 6) + 1;
+            document.getElementById('dice-result').innerText = 'You rolled a ' + result;
+        }
+
+        // Function to play Rock Paper Scissors
+        function playGame(playerChoice) {
+            var choices = ['ROCK', 'PAPER', 'SCISSOR'];
+            var computerChoice = choices[Math.floor(Math.random() * choices.length)];
+            var result = '';
+            if (playerChoice === computerChoice) {
+                result = 'It\'s a tie!';
+            } else if (
+                (playerChoice === 'ROCK' && computerChoice === 'SCISSOR') ||
+                (playerChoice === 'PAPER' && computerChoice === 'ROCK') ||
+                (playerChoice === 'SCISSOR' && computerChoice === 'PAPER')
+            ) {
+                result = 'You win!';
+            } else {
+                result = 'Computer wins!';
+            }
+            document.getElementById('rps-result').innerText = 'You chose ' + playerChoice + ', computer chose ' + computerChoice + '. ' + result;
+        }
+
+        // Function to generate ATM PIN
+        function generatePIN() {
+            var pin = '';
+            for (var i = 0; i < 4; i++) {
+                pin += Math.floor(Math.random() * 10);
+            }
+            document.getElementById('pin-result').innerText = 'Your PIN: ' + pin;
+        }
+
+        // Function to generate a random password
+        function generatePassword() {
+            var password = '';
+            var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            for (var i = 0; i < 8; i++) {
+                password += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            document.getElementById('password-result').innerText = 'Your Password: ' + password;
+        }
+
+        // Function to generate OTP
+        function generateOTP() {
+            var otp = '';
+            for (var i = 0; i < 6; i++) {
+                otp += Math.floor(Math.random() * 10);
+            }
+            document.getElementById('otp-result').innerText = 'Your OTP: ' + otp;
+        }
+    </script>
+</body>
+
+</html>

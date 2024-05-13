@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Even odd Greatest</title>
+</head>
+
+<body>
+    <p>Program to check a number is even or odd</p>
+    <input type="text" placeholder="Enter number" id="t1">
+    <button onclick="check()">Check</button>
+    <h3 id="ans"> Your answer is: </h3>
+    <script>
+        function check() {
+            let num = document.getElementById("t1").value;
+            if (num % 2 === 0) {
+                document.getElementById("ans").innerHTML = "Your answer is " + "Even";
+                document.getElementById("ans").setAttribute("style", 'color:green')
+            }
+            else {
+                document.getElementById("ans").innerHTML = "Your answer is " + "Odd";
+                document.getElementById("ans").setAttribute('style', 'color:red')
+            }
+        }
+    </script>
+</body>
+
+</html>
