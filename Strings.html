@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Strings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            background-image: url("MainWall.jpg");
+            background-size: 100%;
+            background-position-x: 0%;
+            display: grid;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        .BigBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        h4,h1 {
+            margin-bottom: 20px;
+            text-align: center;
+            margin-top: 20px;
+            color: aliceblue;
+        }
+
+
+        .Box {
+            width: 320px;
+            height: 460px;
+            color: #bec3d0;
+            background-color: #1b083e;
+            border: 3px solid rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 18px;
+            opacity: 0.8;
+            text-align: center;
+            margin-left: 20px;
+        }
+                
+        input {
+            border: none;
+            border-radius: 15px;
+            width: 90%;
+            padding: 5px;
+        }
+
+        .button{
+            border: none;
+            border-radius: 15px;
+            width: 55%;
+            margin-top: 15px;
+            padding: 5px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+
+<nav>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Index.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/dataritz/2026cseaJavaScript/tree/main">Sir GitHub</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"
+                href="https://github.com/dataritz/2026cseaJavaScript/blob/main/4%20sem%202026%20Batch.pdf">Syllabus</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/Abhay-Kushwaha/CRC-Abhay" target="_blank">My Git</a>
+        </li>
+    </ul>
+</nav>
+
+<body>
+    <h1>Play with Strings</h1>
+    <div class="BigBox">
+        <div class="Box">
+            <h4>Find Character at Given Index (Start=0)</h4>
+            <form onsubmit="getchar(); return false;">
+                Enter a string:
+                <input type="text" id="str" required><br><br>
+                Enter an index:
+                <input type="number" id="index" required><br><br>
+                <input type="submit" value="Get Character" class="button">
+            </form>
+            <p id="char"></p>
+        </div>
+        <div class="Box">
+            <h4>Find Substring from Given Indices</h4>
+            <form onsubmit="getSubS(); return false;">
+                Enter a string:
+                <input type="text" id="Index" required><br><br>
+                Enter start index:
+                <input type="number" id="Start" required><br><br>
+                Enter end index:
+                <input type="number" id="End" required><br><br>
+                <input type="submit" value="Get Substring" class="button">
+            </form>
+            <p id="Sub"></p>
+        </div>
+        <div class="Box">
+            <h4>Number of vowels</h4>
+            <form onsubmit="CheckVowel(); return false;">
+                Enter a string:
+                <input type="text" id="V" required><br><br>
+                <input type="submit" value="Get Vowel" class="button">
+            </form>
+            <p id="vowel"></p>
+        </div>
+        <div class="Box">
+            <h4>Count Characters</h4>
+            <form onsubmit="CountChar(); return false;">
+                Enter a string:
+                <input type="text" id="C" required><br><br>
+                <input type="submit" value="Get Characters" class="button">
+            </form>
+            <p id="alphaC"></p>
+            <p id="digitC"></p>
+            <p id="specialC"></p>
+        </div>
+    </div>
+    <div class="BigBox">
+        <div class="Box">
+            <h4>Check if String Contains Specified Sequence</h4>
+            <form onsubmit="checkSequence(); return false;">
+                Enter a string:
+                <input type="text" id="inputStr" required><br><br>
+                Enter sequence to check:
+                <input type="text" id="sequence" required><br><br>
+                <input type="submit" value="Check Sequence" class="button">
+            </form>
+            <p id="seq"></p>
+        </div>
+        <div class="Box">
+            <h4>Concatenate Two Strings</h4>
+            <form onsubmit="concatStr(); return false;">
+                Enter 1st string:
+                <input type="text" id="Str1" required><br><br>
+                Enter 2nd string:
+                <input type="text" id="Str2" required><br><br>
+                <input type="submit" value="Concatenate" class="button">
+            </form>
+            <p id="concat"></p>
+        </div>
+        <div class="Box">
+            <h4>Compare Two Strings</h4>
+            <form onsubmit="compareStr(); return false;">
+                Enter 1st string:
+                <input type="text" id="S1" required><br><br>
+                Enter 2nd string:
+                <input type="text" id="S2" required><br><br>
+                <input type="submit" value="Compare" class="button">
+            </form>
+            <p id="compare"></p>
+        </div>
+        <div class="Box">
+            <h4>Check Palindrome</h4>
+            <form onsubmit="Palindrome(); return false;">
+                Enter a string:
+                <input type="text" id="P" required><br><br>
+                <input type="submit" value="Check" class="button">
+            </form>
+            <p id="p"></p>
+        </div>
+    </div>
+    <script>
+        function getchar() {
+            let S = document.getElementById('str').value;
+            let index = parseInt(document.getElementById('index').value);
+            if (isNaN(index) || index < 0 || index >= S.length) {
+                document.getElementById('char').innerText = 'Invalid index. Please enter a valid index.';
+                document.getElementById("char").setAttribute("style", 'color:yellow')
+                return;
+            }
+            let character = S.charAt(index);
+            document.getElementById('char').innerText = `Character at index ${index}: ${character}`;
+            document.getElementById("char").setAttribute("style", 'color:yellow')
+        }
+
+        function getSubS() {
+            let In = document.getElementById('Index').value;
+            let start = parseInt(document.getElementById('Start').value);
+            let end = parseInt(document.getElementById('End').value);
+            if (isNaN(start) || isNaN(end) || start < 0 || end < 0 || start >= In.length || end > In.length || start > end) {
+                document.getElementById('Sub').innerText = 'Invalid indices. Please enter valid indices.';
+                document.getElementById("Sub").setAttribute("style", 'color:yellow');
+                return;
+            }
+            let S = In.substring(start, end);
+            document.getElementById('Sub').innerText = `Substring from index ${start} to ${end}: ${S}`;
+            document.getElementById("Sub").setAttribute("style", 'color:yellow');
+        }
+
+        function CheckVowel() {
+            let I = document.getElementById('V').value;
+            let count = 0;
+            const vowels = "aeiouAEIOU";
+            for (let i = 0; i < I.length; i++) {
+                if (vowels.includes(I[i])) {
+                    count++;
+                }
+            }
+            document.getElementById('vowel').innerText = `Number of vowels: ${count}`;
+            document.getElementById("vowel").setAttribute("style", 'color:yellow');
+        }
+
+        function CountChar() {
+            let IS = document.getElementById('C').value;
+            let A = 0;
+            let D = 0;
+            let S = 0;
+            for (let i = 0; i < IS.length; i++) {
+                let char = IS[i];
+                if ((char >= 'A' && char <= 'Z') || (char >= 'a' && char <= 'z')) {
+                    A++;
+                }
+                else if (char >= '0' && char <= '9') {
+                    D++;
+                }
+                else {
+                    S++;
+                }
+            }
+            document.getElementById('alphaC').innerText = `Alphabets: ${A}`;
+            document.getElementById("alphaC").setAttribute("style", 'color:yellow');
+            document.getElementById('digitC').innerText = `Digits: ${D}`;
+            document.getElementById("digitC").setAttribute("style", 'color:yellow');
+            document.getElementById('specialC').innerText = `Special Characters: ${S}`;
+            document.getElementById("specialC").setAttribute("style", 'color:yellow');
+        }
+
+        function checkSequence() {
+            let input = document.getElementById('inputStr').value;
+            let sequence = document.getElementById('sequence').value;
+            let contains = input.includes(sequence);
+            if (contains) {
+                document.getElementById('seq').innerText = `The string contains the sequence: "${sequence}"`;
+                document.getElementById("seq").setAttribute("style", 'color:yellow');
+            } else {
+                document.getElementById('seq').innerText = `The string does NOT contain the sequence: "${sequence}"`;
+                document.getElementById("seq").setAttribute("style", 'color:yellow');
+            }
+        }
+
+        function concatStr() {
+            let str1 = document.getElementById('Str1').value;
+            let str2 = document.getElementById('Str2').value;
+            let result = str1 + str2;
+            document.getElementById('concat').innerText = `Concatenated string: ${result}`;
+            document.getElementById("concat").setAttribute("style", 'color:yellow');
+        }
+
+        function compareStr() {
+            let str1 = document.getElementById('S1').value;
+            let str2 = document.getElementById('S2').value;
+            if (str1 === str2) {
+                document.getElementById('compare').innerText = "Strings are EQUAL";
+                document.getElementById("compare").setAttribute("style", 'color:yellow');
+            }
+            else {
+                document.getElementById('compare').innerText = "Strings are NOT EQUAL";
+                document.getElementById("compare").setAttribute("style", 'color:yellow');
+            }
+        }
+
+        function Palindrome() {
+            let str = document.getElementById('P').value;
+            let l = str.toLowerCase();
+            let reverse = l.split('').reverse().join('');
+            if (l === reverse) {
+                document.getElementById('p').innerText = `"${str}" is a palindrome.`;
+                document.getElementById("p").setAttribute("style", 'color:yellow');
+            } else {
+                document.getElementById('p').innerText = `"${str}" is NOT a palindrome.`;
+                document.getElementById("p").setAttribute("style", 'color:yellow');
+            }
+        }
+    </script>
+</body>2
+
+</html>

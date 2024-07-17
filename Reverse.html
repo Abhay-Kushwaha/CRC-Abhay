@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loops</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+            background-image: url("MainWall.jpg");
+            background-size: 100%;
+            background-position-x: 0%;
+            display: grid;
+        }
+
+        button {
+            margin: 5px;
+        }
+
+        .BigBox {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            margin-top: 20px;
+            color: aliceblue;
+        }
+
+
+        .Box {
+            width: 300px;
+            height: 350px;
+            color: #bec3d0;
+            background-color: #1b083e;
+            border: 3px solid rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 18px;
+            opacity: 0.8;
+            text-align: center;
+            margin-left: 20px;
+        }
+        
+        input {
+            border: none;
+            border-radius: 15px;
+            width: 90%;
+            padding: 5px;
+        }
+
+        button {
+            border: none;
+            border-radius: 15px;
+            width: 40%;
+            margin-top: 15px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<nav>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Index.html">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/dataritz/2026cseaJavaScript/tree/main">Sir GitHub</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link"
+                href="https://github.com/dataritz/2026cseaJavaScript/blob/main/4%20sem%202026%20Batch.pdf">Syllabus</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://github.com/Abhay-Kushwaha/CRC-Abhay" target="_blank">My Git</a>
+        </li>
+    </ul>
+</nav>
+
+<body>
+    <div class="BigBox">
+        <div class="Box">
+            <h3>Reverse of Number</h3><br>
+            <input type="number" id="Input" placeholder="Enter a number">
+            <button onclick="cal()">Calculate</button>
+            <p id="rev"></p>
+        </div>
+        <div class="Box">
+            <h3>Sum and Multiplication of digits</h3><br>
+            <input type="number" id="I" placeholder="Enter a number">
+            <button onclick="cal2()">Calculate</button>
+            <p id="summul"></p>
+        </div>
+    </div>
+    <script>
+        function cal() {
+            num = document.getElementById("Input").value
+            if (num > 0) {
+                let r = 0;
+                while (num !== 0) {
+                    r = (r * 10) + (num % 10);
+                    num = Math.floor(num / 10);
+                }
+                document.getElementById('rev').innerHTML =
+                    'Reverse: ' + r;
+                document.getElementById("rev").setAttribute("style", 'color:yellow')
+            }
+            else {
+                document.getElementById('rev').innerHTML = "Please Enter number greater than 0"
+            }
+        }
+        function cal2() {
+            num = document.getElementById("I").value
+            if (num > 0) {
+                let sum = 0;
+                let mul = 1
+                while (num !== 0) {
+                    sum = sum + (num % 10);
+                    mul = mul * (num % 10);
+                    num = Math.floor(num / 10);
+                }
+                document.getElementById('summul').innerHTML =
+                    'Sum: ' + sum + '<br>' + 'Multiplication:' + mul;
+                document.getElementById("summul").setAttribute("style", 'color:yellow')
+            }
+            else {
+                document.getElementById('summul').innerHTML = "Please Enter number greater than 0"
+            }
+        }
+    </script>
+</body>
+
+</html>

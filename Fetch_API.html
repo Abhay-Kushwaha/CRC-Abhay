@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather WebApp</title>
+    <style>
+            body {
+        font-family: Arial, sans-serif;
+        background: url('back.jpg') no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .container {
+        text-align: center;
+        background-color: rgba(0, 0, 0, 0.8);
+        width: 45%;
+        margin: 50px auto;
+        display: flex;
+    }
+
+    .backdrop {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        backdrop-filter: blur(3px);
+        z-index: -1;
+    }
+
+    h1 {
+        margin-bottom: 40px;
+        font-family: "Roboto Mono", monospace;
+        font-optical-sizing:auto;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 3rem;
+    }
+
+    .search-bar {
+        margin-bottom: 15px;
+        padding: 13px;
+        background-color: rgb(85, 42, 1);
+        border-radius: 5px;
+        box-shadow: 0 0 20px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+
+    .search-bar input[type="text"] {
+        border: none;
+        padding: 10px;
+        width: 300px;
+        outline: none;
+        font-size: 15px;
+    }
+
+    .search-bar button {
+        background-color: red;
+        color: white;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .left-panel {
+        background-image: url(back.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        width: 60%;
+        color: #fff;
+        padding: 20px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+    }
+
+    .left-panel span {
+        font-size: 4rem;
+    }
+
+    #datetime {
+        color: rgb(255, 255, 255);
+    }
+
+    .right-panel {
+        width: 40%;
+        padding: 5px;
+    }
+
+    .right-panel h3 {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 34px;
+        justify-content: space-between;
+    }
+
+    .details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        max-width: 300px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
+        rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="backdrop"></div>
+    <h1>WEATHER API</h1>
+    <div class="search-bar">
+        <form id="myForm">
+            <input type="text" placeholder="Enter city" id="cityName">
+            <button onclick="check()">SEARCH</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <div class="left-panel">
+            <p id="datetime"></p>
+            <span name="T">0°F</span>
+        </div>
+        <div class="right-panel">
+            <h3 name="description">Atmosphere</h3>
+            <hr width="100%">
+            <div class="details">
+                <div class="detail">
+                    <span>Location</span>
+                    <span name="city">City</span>
+                </div>
+                <div class="detail">
+                    <span>Country</span>
+                    <span name="country">Name</span>
+                </div>
+                <div class="detail">
+                    <span>Temperature</span>
+                    <span name="temp">°F</span>
+                </div>
+                <div class="detail">
+                    <span>Humidity</span>
+                    <span name="humidity">%</span>
+                </div>
+                <div class="detail">
+                    <span>Wind speed</span>
+                    <span name="wind">Mps</span>
+                </div>
+                <div class="detail">
+                    <span>Pressure</span>
+                    <span name="pressure">hPa</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    function update() {
+        const now = new Date();
+        const format = now.toLocaleString();
+        document.getElementById("datetime").innerHTML = format;
+    }
+    update();
+    setInterval(update, 1000);
+
+
+    function check() {
+        let cityName = document.querySelector("#cityName")
+        document.querySelector("#myForm").addEventListener("submit", async (event) => {
+            event.preventDefault()
+            cityName = cityName.value
+            const url = `https://open-weather13.p.rapidapi.com/city/${cityName}/EN`;
+            const options = {
+                method: 'GET',
+                headers: {
+                    'x-rapidapi-key': 'c0a918c4eamsh8b0ee3ed0ade506p176724jsn1cedcc3d62ae',
+                    'x-rapidapi-host': 'open-weather13.p.rapidapi.com'
+                }
+            };
+            try {
+                const response = await fetch(url, options);
+                const result = await response.json();
+                document.getElementsByName("city")[0].innerHTML = result.name;
+                document.getElementsByName("country")[0].innerHTML = result.sys.country;
+                document.getElementsByName("temp")[0].innerHTML = Math.floor(result.main.temp) + " °F";
+                document.getElementsByName("T")[0].innerHTML = Math.floor(result.main.temp) + " °F";
+                document.getElementsByName("humidity")[0].innerHTML = result.main.humidity + " %";
+                document.getElementsByName("wind")[0].innerHTML = result.wind.speed + " Mps";
+                document.getElementsByName("pressure")[0].innerHTML = result.main.pressure + " hPa";
+                document.getElementsByName("description")[0].innerHTML = result.weather[0].main;
+                console.log(result)
+            } catch (error) {
+                console.error(error);
+            }
+        })
+    }
+</script>
+
+</html>
